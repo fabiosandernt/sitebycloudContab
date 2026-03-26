@@ -36,6 +36,30 @@
   ======================================================== -->
 </head>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function() {
+  emailjs.init("SEU_PUBLIC_KEY");
+})();
+
+function sendEmail(e) {
+  e.preventDefault();
+
+  emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", {
+    from_name: document.getElementById("name").value,
+    from_email: document.getElementById("email").value,
+    subject: document.getElementById("subject").value,
+    message: document.querySelector('[name="message"]').value
+  })
+  .then(function() {
+    alert("Mensagem enviada com sucesso!");
+  }, function(error) {
+    alert("Erro ao enviar: " + JSON.stringify(error));
+  });
+}
+</script>
+
 <body>
 
   <!-- ======= Header ======= -->
@@ -54,7 +78,7 @@
           <li><a class="nav-link scrollto" href="#services">Serviços</a></li>
           <!-- <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>  -->
           <!-- <li><a class="nav-link scrollto" href="#team">Team</a></li>  -->
-          <li><a class="nav-link scrollto" href="#pricing">Planos</a></li>
+          <!--<li><a class="nav-link scrollto" href="#pricing">Planos</a></li>-->
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -896,7 +920,7 @@
     <!--@End Team Section -->
 
     <!-- ======= Pricing Section ======= -->
-<section id="pricing" class="pricing">
+<!-- <section id="pricing" class="pricing">
   <div class="container">
 
     <div class="section-title">
@@ -906,7 +930,7 @@
 
     <div class="row">
 
-      <!-- Plano Básico -->
+       Plano Básico 
       <div class="col-lg-4 col-md-6">
         <div class="box" data-aos="zoom-in-right" data-aos-delay="200">
           <h3>Básico</h3>
@@ -924,7 +948,7 @@
         </div>
       </div>
 
-      <!-- Plano Intermediário -->
+       Plano Intermediário
       <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
         <div class="box recommended" data-aos="zoom-in" data-aos-delay="100">
           <h3>Intermediário</h3>
@@ -944,7 +968,7 @@
         </div>
       </div>
 
-      <!-- Plano Business -->
+       Plano Business 
       <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
         <div class="box" data-aos="zoom-in-left" data-aos-delay="200">
           <h3>Business</h3>
@@ -964,7 +988,7 @@
         </div>
       </div>
 
-      <!-- Plano Full -->
+      Plano Full 
       <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
         <div class="box" data-aos="zoom-in-left" data-aos-delay="200">
           <h3>Full</h3>
@@ -987,7 +1011,7 @@
     </div>
 
   </div>
-</section>
+</section> -->
 <!-- End Pricing Section -->
 
    <!-- ======= F.A.Q Section ======= -->
@@ -1175,7 +1199,7 @@
           </div>
 
           <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form onsubmit="sendEmail(event)" role="form">
               <div class="form-group">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
               </div>
@@ -1188,11 +1212,11 @@
               <div class="form-group">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
-              <div class="my-3">
+              <!-- <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
+              </div> -->
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
